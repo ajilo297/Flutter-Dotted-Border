@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0] - 20 May, 2019
 
-* TODO: Describe initial release.
+* Draw rectangular border around any widget.

@@ -1,8 +1,8 @@
 name: dotted_border
 description: A new Flutter package project.
 version: 0.1.0
-author:
-homepage:
+author: Ajil Oommen <ajilo297@gmail.com>
+homepage: https://github.com/ajilo297/flutter_dotted_border
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
