@@ -16,9 +16,19 @@ class MyApp extends StatelessWidget {
           child: Container(
             child: DottedBorder(
               color: Colors.black,
-              gap: 3,
-              strokeWidth: 1,
-              child: FlutterLogo(size: 148),
+              gapSpacing: [6, 2, 3, 2],
+              strokeWidth: 3,
+              padding: EdgeInsets.all(0),
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 400),
+                curve: Curves.easeInOut,
+                decoration: ShapeDecoration(
+                  shape: CircleBorder(),
+                  color: Colors.blueGrey,
+                ),
+                height: 340,
+                width: 340,
+              ),
             ),
           ),
         ),

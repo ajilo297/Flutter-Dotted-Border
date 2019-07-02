@@ -1,19 +1,21 @@
 library dotted_border;
 
 import 'package:flutter/material.dart';
+import 'package:path_drawing/path_drawing.dart';
+
 import 'dart:math' as math;
 
 class DottedBorder extends StatelessWidget {
   final Color color;
   final double strokeWidth;
-  final double gap;
+  final List<double> gapSpacing;
   final Widget child;
   final EdgeInsets padding;
 
   DottedBorder({
     this.color = Colors.black,
     this.strokeWidth = 1.0,
-    this.gap = 5.0,
+    this.gapSpacing = const [4, 2, 2, 2],
     this.padding = const EdgeInsets.all(8.0),
     @required this.child,
   }) {
@@ -32,7 +34,7 @@ class DottedBorder extends StatelessWidget {
                 painter: _DashRectPainter(
                   color: color,
                   strokeWidth: strokeWidth,
-                  gap: gap,
+                  gapSpacing: gapSpacing,
                 ),
               ),
             ),
@@ -49,18 +51,18 @@ class DottedBorder extends StatelessWidget {
 
 class _DashRectPainter extends CustomPainter {
   double strokeWidth;
+  List<double> gapSpacing;
   Color color;
-  double gap;
 
   _DashRectPainter({
-    this.strokeWidth = 5.0,
+    this.strokeWidth = 3.0,
+    this.gapSpacing,
     this.color = Colors.black,
-    this.gap = 5.0,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint dashedPaint = Paint()
+    Paint paint = Paint()
       ..color = color
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
@@ -68,72 +70,53 @@ class _DashRectPainter extends CustomPainter {
     double x = size.width;
     double y = size.height;
 
-    Path _topPath = getDashedPath(
+    Path topPath = getPath(
       a: math.Point(0, 0),
       b: math.Point(x, 0),
-      gap: gap,
+      gapSpacing: CircularIntervalList(gapSpacing),
     );
-
-    Path _rightPath = getDashedPath(
+    Path rightPath = getPath(
       a: math.Point(x, 0),
       b: math.Point(x, y),
-      gap: gap,
+      gapSpacing: CircularIntervalList(gapSpacing),
     );
-
-    Path _bottomPath = getDashedPath(
+    Path bottomPath = getPath(
+      a: math.Point(x, y),
+      b: math.Point(0, y),
+      gapSpacing: CircularIntervalList(gapSpacing),
+    );
+    Path leftPath = getPath(
       a: math.Point(0, y),
-      b: math.Point(x, y),
-      gap: gap,
+      b: math.Point(0, 0),
+      gapSpacing: CircularIntervalList(gapSpacing),
     );
 
-    Path _leftPath = getDashedPath(
-      a: math.Point(0, 0),
-      b: math.Point(0.001, y),
-      gap: gap,
-    );
-
-    canvas.drawPath(_topPath, dashedPaint);
-    canvas.drawPath(_rightPath, dashedPaint);
-    canvas.drawPath(_bottomPath, dashedPaint);
-    canvas.drawPath(_leftPath, dashedPaint);
+    canvas.drawPath(topPath, paint);
+    canvas.drawPath(rightPath, paint);
+    canvas.drawPath(bottomPath, paint);
+    canvas.drawPath(leftPath, paint);
   }
 
-  Path getDashedPath({
+  Path getPath({
     @required math.Point<double> a,
     @required math.Point<double> b,
-    @required gap,
+    CircularIntervalList<double> gapSpacing,
   }) {
-    Size size = Size(b.x - a.x, b.y - a.y);
-    Path path = Path();
-    path.moveTo(a.x, a.y);
-    bool shouldDraw = true;
-    math.Point currentPoint = math.Point(a.x, a.y);
+    Path path = Path()
+      ..moveTo(a.x, a.y)
+      ..lineTo(b.x, b.y);
 
-    num radians = math.atan(size.height / size.width);
+    return getDashedPath(path, gapSpacing);
+  }
 
-    num dx = math.cos(radians) * gap < 0
-        ? math.cos(radians) * gap * -1
-        : math.cos(radians) * gap;
-
-    num dy = math.sin(radians) * gap < 0
-        ? math.sin(radians) * gap * -1
-        : math.sin(radians) * gap;
-
-    while (currentPoint.x <= b.x && currentPoint.y <= b.y) {
-      shouldDraw
-          ? path.lineTo(currentPoint.x, currentPoint.y)
-          : path.moveTo(currentPoint.x, currentPoint.y);
-      shouldDraw = !shouldDraw;
-      currentPoint = math.Point(
-        currentPoint.x + dx,
-        currentPoint.y + dy,
-      );
-    }
-    return path;
+  Path getDashedPath(Path source, CircularIntervalList<double> gapSpacing) {
+    return dashPath(source, dashArray: gapSpacing);
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(_DashRectPainter oldDelegate) {
+    return oldDelegate.strokeWidth != this.strokeWidth ||
+        oldDelegate.color != this.color ||
+        oldDelegate.gapSpacing != this.gapSpacing;
   }
 }
