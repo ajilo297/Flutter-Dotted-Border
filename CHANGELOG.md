@@ -5,3 +5,8 @@
 ## [0.1.1] - 20 May, 2019
 
 * Added description
+
+## [1.0.0] - 3 July, 2019
+
+* Add more path options
+* Added dash pattern option
