@@ -16,9 +16,11 @@ class MyApp extends StatelessWidget {
           child: Container(
             child: DottedBorder(
               color: Colors.black,
-              gapSpacing: [6, 2, 3, 2],
-              strokeWidth: 3,
-              padding: EdgeInsets.all(0),
+              dashPattern: [6, 3, 1, 2],
+              strokeWidth: 1,
+              borderType: BorderType.Oval,
+              radius: Radius.circular(40),
+              padding: EdgeInsets.all(8),
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 400),
                 curve: Curves.easeInOut,
@@ -26,8 +28,8 @@ class MyApp extends StatelessWidget {
                   shape: CircleBorder(),
                   color: Colors.blueGrey,
                 ),
-                height: 340,
-                width: 340,
+                height: 150,
+                width: 250,
               ),
             ),
           ),

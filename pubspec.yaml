@@ -5,7 +5,7 @@ author: Ajil Oommen <ajilo297@gmail.com>
 homepage: https://github.com/ajilo297/flutter_dotted_border
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
