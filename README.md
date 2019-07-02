@@ -1,6 +1,6 @@
 # Dotted Border
 
-[![pub package](https://img.shields.io/badge/pub-1.0.0-orange.svg)](https://pub.dev/packages/dotted_border)
+[![pub package](https://img.shields.io/badge/pub-1.0.1-orange.svg)](https://pub.dev/packages/dotted_border)
 
 A flutter package to easily added dotted borders around widgets.
 
@@ -32,7 +32,7 @@ This package supports the following border types at the moment
 
 Now you can also specify the Dash Sequence by passing in an Array of Doubles
 
-```
+```dart
 DottedBorder(
     dashPattern: [6, 3, 2, 3] 
     child: ...

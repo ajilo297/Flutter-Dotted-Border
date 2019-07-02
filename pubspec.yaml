@@ -1,6 +1,6 @@
 name: dotted_border
 description: A flutter package to let users easily add a rectanfular dashed border around any widget.
-version: 1.0.0
+version: 1.0.1
 author: Ajil Oommen <ajilo297@gmail.com>
 homepage: https://github.com/ajilo297/flutter_dotted_border
 

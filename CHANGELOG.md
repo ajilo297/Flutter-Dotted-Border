@@ -10,3 +10,7 @@
 
 * Add more path options
 * Added dash pattern option
+
+## [1.0.1] - 3 July, 2019
+
+* Added a basic Dart doc
