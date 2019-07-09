@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   spacing: 8,
                   children: <Widget>[
                     rectBorderWidget,
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
 
   Widget get rectBorderWidget {
     return DottedBorder(
-      dashPattern: [8, 3],
+      dashPattern: [8, 4],
+      strokeWidth: 2,
       child: Container(
         height: 200,
         width: 120,
@@ -45,12 +48,13 @@ class MyApp extends StatelessWidget {
     return DottedBorder(
       borderType: BorderType.RRect,
       radius: Radius.circular(12),
+      padding: EdgeInsets.all(6),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         child: Container(
           height: 200,
           width: 120,
-          color: Colors.yellow,
+          color: Colors.amber,
         ),
       ),
     );
@@ -58,11 +62,11 @@ class MyApp extends StatelessWidget {
 
   Widget get customBorder {
     Path customPath = Path()
-      ..moveTo(0, 0)
-      ..lineTo(60, 100)
-      ..lineTo(0, 200)
-      ..lineTo(120, 100)
-      ..lineTo(0, 0);
+      ..moveTo(20, 20)
+      ..lineTo(50, 100)
+      ..lineTo(20, 200)
+      ..lineTo(100, 100)
+      ..lineTo(20, 20);
 
     return DottedBorder(
       customPath: customPath,
@@ -70,8 +74,9 @@ class MyApp extends StatelessWidget {
       dashPattern: [8, 4],
       strokeWidth: 2,
       child: Container(
-        height: 200,
+        height: 220,
         width: 120,
+        color: Colors.green.withAlpha(20),
       ),
     );
   }

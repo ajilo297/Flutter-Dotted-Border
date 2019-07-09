@@ -14,3 +14,7 @@
 ## [1.0.1] - 3 July, 2019
 
 * Added a basic Dart doc
+
+## [1.0.2] - 9 July, 2019
+
+* Added ability to let users specify their own custom paths as border

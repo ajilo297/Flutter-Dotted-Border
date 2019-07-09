@@ -5,13 +5,12 @@ import 'package:path_drawing/path_drawing.dart';
 
 part 'dash_painter.dart';
 
-/// Dotted Border
-///
 /// Add a dotted border around any [child] widget. The [strokeWidth] property
 /// defines the width of the dashed border and [color] determines the stroke
 /// paint color. [CircularIntervalList] is populated with the [dashPattern] to
 /// render the appropriate pattern. The [radius] property is taken into account
-/// only if the [borderType] is [BorderType.RRect].
+/// only if the [borderType] is [BorderType.RRect]. A [customPath] can be passed in
+/// as a parameter if you want to draw a custom shaped border. 
 class DottedBorder extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;

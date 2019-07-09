@@ -1,14 +1,14 @@
 # Dotted Border
 
-[![pub package](https://img.shields.io/badge/pub-1.0.1-orange.svg)](https://pub.dev/packages/dotted_border)
+[![pub package](https://img.shields.io/badge/pub-1.0.2-orange.svg)](https://pub.dev/packages/dotted_border)
 
 A flutter package to easily added dotted borders around widgets.
 
-## Usage
+### Installing
 
 To use this package, add `dotted_border` as a dependency in your `pubspec.yaml` file.
 
-### Example
+### Usage
 
 Wrap `DottedBorder` widget around the child widget
 
@@ -28,10 +28,29 @@ This package supports the following border types at the moment
  * CircleBorder
  * OvalBorder
 
+#### Example
+
+```dart
+return DottedBorder(
+  borderType: BorderType.RRect,
+  radius: Radius.circular(12),
+  padding: EdgeInsets.all(6),
+  child: ClipRRect(
+    borderRadius: BorderRadius.all(Radius.circular(12)),
+    child: Container(
+      height: 200,
+      width: 120,
+      color: Colors.amber,
+    ),
+  ),
+);
+```
+
 ### Dash Pattern
 
 Now you can also specify the Dash Sequence by passing in an Array of Doubles
 
+#### Example
 ```dart
 DottedBorder(
     dashPattern: [6, 3, 2, 3] 
@@ -45,6 +64,37 @@ The above code block will render a dashed border with the following pattern:
 * 3 pixel wide space
 * 2 pixel wide dash
 * 3 pixel wide space
+
+### Custom Path Border
+
+You can also specify any path as the `customPath` property when initializing the DottedBorderWidget, and it will draw it for you using the provided dash pattern.
+
+#### Example
+
+```dart
+Path customPath = Path()
+  ..moveTo(20, 20)
+  ..lineTo(50, 100)
+  ..lineTo(20, 200)
+  ..lineTo(100, 100)
+  ..lineTo(20, 20);
+
+return DottedBorder(
+  customPath: customPath,
+  color: Colors.indigo,
+  dashPattern: [8, 4],
+  strokeWidth: 2,
+  child: Container(
+    height: 220,
+    width: 120,
+    color: Colors.green.withAlpha(20),
+  ),
+);
+```
+
+#### Output
+
+![Flutter dotted border image](assets/image.png?raw=true "Flutter Dotted Border Image" )
 
 ### Credits
 
