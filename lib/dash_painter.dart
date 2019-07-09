@@ -6,6 +6,7 @@ class _DashPainter extends CustomPainter {
   final Color color;
   final BorderType borderType;
   final Radius radius;
+  final Path customPath;
 
   _DashPainter({
     this.strokeWidth = 2,
@@ -13,7 +14,10 @@ class _DashPainter extends CustomPainter {
     this.color = Colors.black,
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
-  });
+    this.customPath,
+  }) {
+    assert (dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -22,7 +26,13 @@ class _DashPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.stroke;
 
-    Path _path = _getPath(size);
+    Path _path;
+    if (customPath != null) {
+      _path = dashPath(customPath, dashArray: CircularIntervalList(dashPattern));
+    } else {
+      _path = _getPath(size);
+    }
+
     canvas.drawPath(_path, paint);
   }
 

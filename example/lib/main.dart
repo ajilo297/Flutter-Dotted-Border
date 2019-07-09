@@ -16,18 +16,12 @@ class MyApp extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  spacing: 8,
                   children: <Widget>[
-                    container1,
-                    Spacer(),
-                    container2,
-                    Spacer(),
-                    container3,
-                    Spacer(),
-                    container4,
+                    rectBorderWidget,
+                    roundedRectBorderWidget,
+                    customBorder,
                   ],
                 ),
               ),
@@ -36,63 +30,48 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget get container1 {
+  Widget get rectBorderWidget {
     return DottedBorder(
-      padding: EdgeInsets.all(4),
-      dashPattern: [9, 5],
+      dashPattern: [8, 3],
       child: Container(
-        height: 110,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: Color(0xff994444),
-        ),
+        height: 200,
+        width: 120,
+        color: Colors.red,
       ),
     );
   }
 
-  Widget get container2 {
+  Widget get roundedRectBorderWidget {
     return DottedBorder(
-      padding: EdgeInsets.all(8),
-      dashPattern: [6],
-      borderType: BorderType.Circle,
-      child: Container(
-        height: 210,
-        width: double.maxFinite,
-        decoration: ShapeDecoration(
-          shape: CircleBorder(),
-          color: Color(0xff444499),
-        ),
-      ),
-    );
-  }
-
-  Widget get container3 {
-    return DottedBorder(
-      padding: EdgeInsets.all(4),
       borderType: BorderType.RRect,
-      radius: Radius.circular(20),
-      child: Container(
-        height: 120,
-        width: double.maxFinite,
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          color: Color(0xff994444),
+      radius: Radius.circular(12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        child: Container(
+          height: 200,
+          width: 120,
+          color: Colors.yellow,
         ),
       ),
     );
   }
 
-  Widget get container4 {
+  Widget get customBorder {
+    Path customPath = Path()
+      ..moveTo(0, 0)
+      ..lineTo(60, 100)
+      ..lineTo(0, 200)
+      ..lineTo(120, 100)
+      ..lineTo(0, 0);
+
     return DottedBorder(
-      borderType: BorderType.Oval,
-      dashPattern: [8,4,2,4],
+      customPath: customPath,
+      color: Colors.indigo,
+      dashPattern: [8, 4],
+      strokeWidth: 2,
       child: Container(
-        height: 180,
-        width: double.maxFinite,
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: Color(0x22888888),
-        ),
+        height: 200,
+        width: 120,
       ),
     );
   }
