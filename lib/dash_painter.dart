@@ -7,6 +7,7 @@ class _DashPainter extends CustomPainter {
   final BorderType borderType;
   final Radius radius;
   final Path customPath;
+  final StrokeCap strokeCap;
 
   _DashPainter({
     this.strokeWidth = 2,
@@ -15,6 +16,7 @@ class _DashPainter extends CustomPainter {
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
     this.customPath,
+    this.strokeCap = StrokeCap.butt
   }) {
     assert (dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
@@ -24,6 +26,7 @@ class _DashPainter extends CustomPainter {
     Paint paint = Paint()
       ..strokeWidth = strokeWidth
       ..color = color
+      ..strokeCap = strokeCap
       ..style = PaintingStyle.stroke;
 
     Path _path;
