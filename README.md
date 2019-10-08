@@ -1,6 +1,6 @@
 # Dotted Border
 
-[![pub package](https://img.shields.io/badge/pub-1.0.2-orange.svg)](https://pub.dev/packages/dotted_border)
+[![pub package](https://img.shields.io/badge/pub-1.0.3-orange.svg)](https://pub.dev/packages/dotted_border)
 
 A flutter package to easily added dotted borders around widgets.
 
@@ -91,6 +91,16 @@ return DottedBorder(
   ),
 );
 ```
+
+### Stroke Cap
+
+> PR submitted by [Tarekk Mohamed Abdalla](https://github.com/TarekkMA)
+
+You can set a [`StrokeCap`](https://api.flutter.dev/flutter/dart-ui/StrokeCap-class.html) to the border line endings. It can take three values
+
+* StrokeCap.Round
+* StrokeCap.Square
+* StrokeCap.Butt
 
 #### Output
 
