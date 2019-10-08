@@ -20,6 +20,7 @@ class DottedBorder extends StatelessWidget {
   final BorderType borderType;
   final Radius radius;
   final Path customPath;
+  final StrokeCap strokeCap;
 
   DottedBorder({
     @required this.child,
@@ -30,6 +31,7 @@ class DottedBorder extends StatelessWidget {
     this.padding = const EdgeInsets.all(2),
     this.radius = const Radius.circular(0),
     this.customPath,
+    this.strokeCap = StrokeCap.butt,
   }) {
     assert(child != null);
   }
@@ -47,6 +49,7 @@ class DottedBorder extends StatelessWidget {
               borderType: borderType,
               dashPattern: dashPattern,
               customPath: customPath,
+              strokeCap: strokeCap,
             ),
           ),
         ),

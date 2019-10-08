@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
                     rectBorderWidget,
                     roundedRectBorderWidget,
                     customBorder,
+                    roundStrokeCap,
                   ],
                 ),
               ),
@@ -77,6 +78,21 @@ class MyApp extends StatelessWidget {
         height: 220,
         width: 120,
         color: Colors.green.withAlpha(20),
+      ),
+    );
+  }
+
+  Widget get roundStrokeCap {
+    return DottedBorder(
+      dashPattern: [8, 4],
+      strokeWidth: 2,
+      strokeCap: StrokeCap.round,
+      borderType: BorderType.RRect,
+      radius: Radius.circular(5),
+      child: Container(
+        height: 200,
+        width: 120,
+        color: Colors.red,
       ),
     );
   }
