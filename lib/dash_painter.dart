@@ -16,9 +16,9 @@ class _DashPainter extends CustomPainter {
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
     this.customPath,
-    this.strokeCap = StrokeCap.butt
+    this.strokeCap = StrokeCap.butt,
   }) {
-    assert (dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
+    assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
 
   @override
@@ -31,7 +31,8 @@ class _DashPainter extends CustomPainter {
 
     Path _path;
     if (customPath != null) {
-      _path = dashPath(customPath, dashArray: CircularIntervalList(dashPattern));
+      _path =
+          dashPath(customPath, dashArray: CircularIntervalList(dashPattern));
     } else {
       _path = _getPath(size);
     }

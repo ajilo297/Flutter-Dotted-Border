@@ -1,3 +1,7 @@
+## [1.0.4] - 10 December, 2019
+
+- Added check to ensure invalid dash patterns are not entered in the dotted border widget
+
 ## [1.0.3] - 8 October, 2019
 
 - Added StrokeCap property
