@@ -34,6 +34,7 @@ class DottedBorder extends StatelessWidget {
     this.strokeCap = StrokeCap.butt,
   }) {
     assert(child != null);
+    assert(_isValidDashPattern(dashPattern), 'Invalid dash pattern');
   }
 
   @override
@@ -59,6 +60,14 @@ class DottedBorder extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  bool _isValidDashPattern(List<double> dashPattern) {
+    Set<double> _dashSet = dashPattern.toSet();
+    if (_dashSet == null) return false;
+    if (_dashSet.length == 1 && _dashSet.elementAt(0) == 0.0) return false;
+    if (_dashSet.length == 0) return false;
+    return true;
   }
 }
 
