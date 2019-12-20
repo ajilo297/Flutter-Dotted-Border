@@ -53,7 +53,7 @@ Now you can also specify the Dash Sequence by passing in an Array of Doubles
 #### Example
 ```dart
 DottedBorder(
-    dashPattern: [6, 3, 2, 3] 
+    dashPattern: [6, 3, 2, 3], 
     child: ...
 );
 ```
