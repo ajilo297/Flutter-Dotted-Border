@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
       ..lineTo(20, 20);
 
     return DottedBorder(
-      customPath: customPath,
+      customPath: (_) => customPath,
       color: Colors.indigo,
       dashPattern: [8, 4],
       strokeWidth: 2,
