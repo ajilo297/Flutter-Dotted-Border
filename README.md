@@ -1,6 +1,6 @@
 # Dotted Border
 
-[![pub package](https://img.shields.io/badge/pub-1.0.4-orange.svg)](https://pub.dev/packages/dotted_border)
+[![pub package](https://img.shields.io/badge/pub-1.0.5-blue.svg)](https://pub.dev/packages/dotted_border)
 
 A flutter package to easily added dotted borders around widgets.
 
