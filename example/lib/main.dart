@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
                     customBorder,
                     roundStrokeCap,
                     solidBorder,
+                    fullWidthPath,
                   ],
                 ),
               ),
@@ -107,6 +108,20 @@ class MyApp extends StatelessWidget {
         color: Colors.green,
         height: 200,
         width: 120,
+      ),
+    );
+  }
+  
+  Widget get fullWidthPath {
+    return DottedBorder(
+      customPath: (size) {
+        return Path()
+          ..moveTo(0, 20)
+          ..lineTo(size.width, 20);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(),
       ),
     );
   }
