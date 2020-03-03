@@ -1,12 +1,14 @@
 part of 'dotted_border.dart';
 
+typedef PathBuilder = Path Function(Size);
+
 class _DashPainter extends CustomPainter {
   final double strokeWidth;
   final List<double> dashPattern;
   final Color color;
   final BorderType borderType;
   final Radius radius;
-  final Path customPath;
+  final PathBuilder customPath;
   final StrokeCap strokeCap;
 
   _DashPainter({
@@ -32,7 +34,7 @@ class _DashPainter extends CustomPainter {
     Path _path;
     if (customPath != null) {
       _path =
-          dashPath(customPath, dashArray: CircularIntervalList(dashPattern));
+          dashPath(customPath(size), dashArray: CircularIntervalList(dashPattern));
     } else {
       _path = _getPath(size);
     }
