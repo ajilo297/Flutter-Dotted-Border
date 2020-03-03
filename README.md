@@ -80,7 +80,7 @@ Path customPath = Path()
   ..lineTo(20, 20);
 
 return DottedBorder(
-  customPath: customPath,
+  customPath: (size) => customPath, // PathBuilder
   color: Colors.indigo,
   dashPattern: [8, 4],
   strokeWidth: 2,
