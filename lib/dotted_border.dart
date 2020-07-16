@@ -62,6 +62,9 @@ class DottedBorder extends StatelessWidget {
     );
   }
 
+  /// Compute if [dashPattern] is valid. The following conditions need to be met
+  /// * Cannot be null or empty
+  /// * If [dashPattern] has only 1 element, it cannot be 0
   bool _isValidDashPattern(List<double> dashPattern) {
     Set<double> _dashSet = dashPattern.toSet();
     if (_dashSet == null) return false;
@@ -71,4 +74,5 @@ class DottedBorder extends StatelessWidget {
   }
 }
 
+/// The different supported BorderTypes
 enum BorderType { Circle, RRect, Rect, Oval }

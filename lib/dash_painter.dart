@@ -33,8 +33,10 @@ class _DashPainter extends CustomPainter {
 
     Path _path;
     if (customPath != null) {
-      _path =
-          dashPath(customPath(size), dashArray: CircularIntervalList(dashPattern));
+      _path = dashPath(
+        customPath(size),
+        dashArray: CircularIntervalList(dashPattern),
+      );
     } else {
       _path = _getPath(size);
     }
@@ -42,6 +44,7 @@ class _DashPainter extends CustomPainter {
     canvas.drawPath(_path, paint);
   }
 
+  /// Returns a [Path] based on the the [borderType] parameter
   Path _getPath(Size size) {
     Path path;
     switch (borderType) {
@@ -62,6 +65,7 @@ class _DashPainter extends CustomPainter {
     return dashPath(path, dashArray: CircularIntervalList(dashPattern));
   }
 
+  /// Returns a circular path of [size]
   Path _getCirclePath(Size size) {
     double w = size.width;
     double h = size.height;
@@ -81,6 +85,7 @@ class _DashPainter extends CustomPainter {
       );
   }
 
+  /// Returns a Rounded Rectangular Path with [radius] of [size]
   Path _getRRectPath(Size size, Radius radius) {
     return Path()
       ..addRRect(
@@ -96,6 +101,7 @@ class _DashPainter extends CustomPainter {
       );
   }
 
+  /// Returns a path of [size]
   Path _getRectPath(Size size) {
     return Path()
       ..addRect(
@@ -108,6 +114,7 @@ class _DashPainter extends CustomPainter {
       );
   }
 
+  /// Return an oval path of [size]
   Path _getOvalPath(Size size) {
     return Path()
       ..addOval(

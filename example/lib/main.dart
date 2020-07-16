@@ -9,29 +9,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Dotted Border'),
-          ),
-          body: SafeArea(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 8,
-                  children: <Widget>[
-                    rectBorderWidget,
-                    roundedRectBorderWidget,
-                    customBorder,
-                    roundStrokeCap,
-                    solidBorder,
-                    fullWidthPath,
-                  ],
-                ),
+        appBar: AppBar(
+          title: Text('Dotted Border'),
+        ),
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: <Widget>[
+                  rectBorderWidget,
+                  roundedRectBorderWidget,
+                  customBorder,
+                  roundStrokeCap,
+                  solidBorder,
+                  fullWidthPath,
+                ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 
@@ -111,7 +112,7 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget get fullWidthPath {
     return DottedBorder(
       customPath: (size) {

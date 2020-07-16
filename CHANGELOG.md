@@ -1,3 +1,6 @@
+### [1.0.6] - 16 July, 2020
+- Formatted code and added code comments
+
 ### [1.0.5] - 3 March, 2020
 
 - Changed Path property to a PathBuilder so that the size of the child widget is received as a callback
