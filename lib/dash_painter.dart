@@ -8,8 +8,8 @@ class _DashPainter extends CustomPainter {
   final Color color;
   final BorderType borderType;
   final Radius radius;
-  final PathBuilder customPath;
   final StrokeCap strokeCap;
+  final PathBuilder? customPath;
 
   _DashPainter({
     this.strokeWidth = 2,
@@ -17,8 +17,8 @@ class _DashPainter extends CustomPainter {
     this.color = Colors.black,
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
-    this.customPath,
     this.strokeCap = StrokeCap.butt,
+    this.customPath,
   }) {
     assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
@@ -34,7 +34,7 @@ class _DashPainter extends CustomPainter {
     Path _path;
     if (customPath != null) {
       _path = dashPath(
-        customPath(size),
+        customPath!(size),
         dashArray: CircularIntervalList(dashPattern),
       );
     } else {

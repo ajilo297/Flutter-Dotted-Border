@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Draw a border with rectangular border
   Widget get rectBorderWidget {
     return DottedBorder(
       dashPattern: [8, 4],
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Draw a border with a rounded rectangular border
   Widget get roundedRectBorderWidget {
     return DottedBorder(
       borderType: BorderType.RRect,
@@ -64,6 +66,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Draw a border with custom path border
   Widget get customBorder {
     Path customPath = Path()
       ..moveTo(20, 20)
@@ -85,6 +88,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Set border stroke cap
   Widget get roundStrokeCap {
     return DottedBorder(
       dashPattern: [8, 4],

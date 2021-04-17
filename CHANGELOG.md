@@ -1,3 +1,9 @@
+### [2.0.0] - 17 April, 2020
+- Move null safety to stable and master
+
+### [2.0.0-nullsafety.0] - 23 December, 2020
+- Migrated package to use null safety
+
 ### [1.0.6] - 16 July, 2020
 - Formatted code and added code comments
 
