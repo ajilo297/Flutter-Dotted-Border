@@ -1,7 +1,7 @@
 ### [2.0.0+1] - 10 August, 2021
 - Fixed wrong placement for CircleBorder
 
-### [2.0.0] - 17 April, 2020
+### [2.0.0] - 17 April, 2021
 - Move null safety to stable and master
 
 ### [2.0.0-nullsafety.0] - 23 December, 2020
