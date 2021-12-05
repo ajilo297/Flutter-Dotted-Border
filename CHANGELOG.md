@@ -1,3 +1,6 @@
+### [2.0.0+2] - 5 December, 2021
+- Use path_drawing: ^1.0.0
+
 ### [2.0.0+1] - 10 August, 2021
 - Fixed wrong placement for CircleBorder
 
