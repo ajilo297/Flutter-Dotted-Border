@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
                 spacing: 8,
                 children: <Widget>[
                   rectBorderWidget,
+                  rectBorderWithPaddingWidget,
                   roundedRectBorderWidget,
                   customBorder,
                   roundStrokeCap,
@@ -45,6 +46,24 @@ class MyApp extends StatelessWidget {
         height: 200,
         width: 120,
         color: Colors.red,
+      ),
+    );
+  }
+
+  /// Use [DottedBorder.borderPadding] to prevent the border from being drawn outside the widget.
+  Widget get rectBorderWithPaddingWidget {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: DottedBorder(
+        dashPattern: [8, 4],
+        strokeWidth: 8,
+        padding: EdgeInsets.all(8),
+        borderPadding: EdgeInsets.all(4),
+        child: Container(
+          height: 200,
+          width: 120,
+          color: Colors.red.withOpacity(0.5),
+        ),
       ),
     );
   }
