@@ -10,6 +10,7 @@ class _DashPainter extends CustomPainter {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
+  final EdgeInsets padding;
 
   _DashPainter({
     this.strokeWidth = 2,
@@ -19,12 +20,24 @@ class _DashPainter extends CustomPainter {
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
+    this.padding = EdgeInsets.zero,
   }) {
     assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size originalSize) {
+    final Size size;
+    if (padding == EdgeInsets.zero) {
+      size = originalSize;
+    } else {
+      canvas.translate(padding.left, padding.top);
+      size = Size(
+        originalSize.width - padding.horizontal,
+        originalSize.height - padding.vertical,
+      );
+    }
+
     Paint paint = Paint()
       ..strokeWidth = strokeWidth
       ..color = color
@@ -132,6 +145,7 @@ class _DashPainter extends CustomPainter {
     return oldDelegate.strokeWidth != this.strokeWidth ||
         oldDelegate.color != this.color ||
         oldDelegate.dashPattern != this.dashPattern ||
+        oldDelegate.padding != this.padding ||
         oldDelegate.borderType != this.borderType;
   }
 }

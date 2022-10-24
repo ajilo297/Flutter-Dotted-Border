@@ -14,6 +14,7 @@ part 'dash_painter.dart';
 class DottedBorder extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
+  final EdgeInsets borderPadding;
   final double strokeWidth;
   final Color color;
   final List<double> dashPattern;
@@ -29,6 +30,7 @@ class DottedBorder extends StatelessWidget {
     this.borderType = BorderType.Rect,
     this.dashPattern = const <double>[3, 1],
     this.padding = const EdgeInsets.all(2),
+    this.borderPadding = EdgeInsets.zero,
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
@@ -43,6 +45,7 @@ class DottedBorder extends StatelessWidget {
         Positioned.fill(
           child: CustomPaint(
             painter: _DashPainter(
+              padding: borderPadding,
               strokeWidth: strokeWidth,
               radius: radius,
               color: color,
