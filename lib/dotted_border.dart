@@ -1,7 +1,7 @@
 library dotted_border;
 
 import 'package:flutter/material.dart';
-import 'package:path_drawing/path_drawing.dart';
+import 'package:dotted_border/dash_path.dart';
 
 part 'dash_painter.dart';
 
@@ -11,6 +11,10 @@ part 'dash_painter.dart';
 /// render the appropriate pattern. The [radius] property is taken into account
 /// only if the [borderType] is [BorderType.RRect]. A [customPath] can be passed in
 /// as a parameter if you want to draw a custom shaped border.
+///
+/// [childOnTop] specifies wether the [child] should be placed over or under the border. Default is `true`.
+///
+/// An [animation] can be used to animate the position of the path along its length. A repeated animation from 0 to 1 gives the effect of a continuously rotating border.
 class DottedBorder extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
@@ -22,7 +26,8 @@ class DottedBorder extends StatelessWidget {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
-  final StackFit stackFit;
+  final Animation? animation;
+  final bool childOnTop;
 
   DottedBorder({
     required this.child,
@@ -35,16 +40,23 @@ class DottedBorder extends StatelessWidget {
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
-    this.stackFit = StackFit.loose,
+    this.animation,
+    this.childOnTop = true,
   }) {
     assert(_isValidDashPattern(dashPattern), 'Invalid dash pattern');
   }
 
   @override
   Widget build(BuildContext context) {
+    final stackChild = Padding(
+      padding: padding,
+      child: child,
+    );
+
     return Stack(
       fit: stackFit,
       children: <Widget>[
+        if (!childOnTop) stackChild,
         Positioned.fill(
           child: CustomPaint(
             painter: DashedPainter(
@@ -56,13 +68,11 @@ class DottedBorder extends StatelessWidget {
               dashPattern: dashPattern,
               customPath: customPath,
               strokeCap: strokeCap,
+              animation: animation,
             ),
           ),
         ),
-        Padding(
-          padding: padding,
-          child: child,
-        ),
+        if (childOnTop) stackChild,
       ],
     );
   }
