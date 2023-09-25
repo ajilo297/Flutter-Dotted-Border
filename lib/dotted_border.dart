@@ -26,6 +26,7 @@ class DottedBorder extends StatelessWidget {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
+  final StackFit stackFit;
   final Animation? animation;
   final bool childOnTop;
 
@@ -40,6 +41,7 @@ class DottedBorder extends StatelessWidget {
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
+    this.stackFit = StackFit.loose,
     this.animation,
     this.childOnTop = true,
   }) {
