@@ -2,7 +2,14 @@ part of 'dotted_border.dart';
 
 typedef PathBuilder = Path Function(Size);
 
-class _DashPainter extends CustomPainter {
+/// [DashedPainter] is a custom painter that draws a dashed line around the
+/// [child] widget. The [strokeWidth] property defines the width of the dashed
+/// border and [color] determines the stroke paint color. [CircularIntervalList]
+/// is populated with the [dashPattern] to render the appropriate pattern. The
+/// [radius] property is taken into account only if the [borderType] is
+/// [BorderType.RRect]. A [customPath] can be passed in as a parameter if you
+/// want to draw a custom shaped border.
+class DashedPainter extends CustomPainter {
   final double strokeWidth;
   final List<double> dashPattern;
   final Color color;
@@ -12,7 +19,7 @@ class _DashPainter extends CustomPainter {
   final PathBuilder? customPath;
   final EdgeInsets padding;
 
-  _DashPainter({
+  DashedPainter({
     this.strokeWidth = 2,
     this.dashPattern = const <double>[3, 1],
     this.color = Colors.black,
@@ -141,7 +148,7 @@ class _DashPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_DashPainter oldDelegate) {
+  bool shouldRepaint(DashedPainter oldDelegate) {
     return oldDelegate.strokeWidth != this.strokeWidth ||
         oldDelegate.color != this.color ||
         oldDelegate.dashPattern != this.dashPattern ||

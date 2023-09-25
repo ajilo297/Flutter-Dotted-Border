@@ -22,6 +22,7 @@ class DottedBorder extends StatelessWidget {
   final Radius radius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
+  final StackFit stackFit;
 
   DottedBorder({
     required this.child,
@@ -34,6 +35,7 @@ class DottedBorder extends StatelessWidget {
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
+    this.stackFit = StackFit.loose,
   }) {
     assert(_isValidDashPattern(dashPattern), 'Invalid dash pattern');
   }
@@ -41,10 +43,11 @@ class DottedBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: stackFit,
       children: <Widget>[
         Positioned.fill(
           child: CustomPaint(
-            painter: _DashPainter(
+            painter: DashedPainter(
               padding: borderPadding,
               strokeWidth: strokeWidth,
               radius: radius,
