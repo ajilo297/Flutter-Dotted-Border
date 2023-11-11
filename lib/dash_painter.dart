@@ -13,6 +13,7 @@ class DashedPainter extends CustomPainter {
   final double strokeWidth;
   final List<double> dashPattern;
   final Color color;
+  final Gradient? gradient;
   final BorderType borderType;
   final Radius radius;
   final StrokeCap strokeCap;
@@ -23,6 +24,7 @@ class DashedPainter extends CustomPainter {
     this.strokeWidth = 2,
     this.dashPattern = const <double>[3, 1],
     this.color = Colors.black,
+    this.gradient,
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
     this.strokeCap = StrokeCap.butt,
@@ -47,9 +49,15 @@ class DashedPainter extends CustomPainter {
 
     Paint paint = Paint()
       ..strokeWidth = strokeWidth
-      ..color = color
       ..strokeCap = strokeCap
       ..style = PaintingStyle.stroke;
+
+    if (gradient != null) {
+      final rect = Offset.zero & size;
+      paint.shader = gradient!.createShader(rect);
+    } else {
+      paint.color = color;
+    }
 
     Path _path;
     if (customPath != null) {
