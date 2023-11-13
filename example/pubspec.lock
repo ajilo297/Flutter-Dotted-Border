@@ -47,7 +47,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.0.0+2"
+    version: "2.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -98,22 +98,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  path_drawing:
-    dependency: transitive
-    description:
-      name: path_drawing
-      sha256: a19347362f85a45aadf6bdfa3c04f18ff6676c445375eecd6251f9e09b9db551
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  path_parsing:
-    dependency: transitive
-    description:
-      name: path_parsing
-      sha256: "9508ebdf1c3ac3a68ad5fb15edab8b026382999f18f77352349e56fbd74183ac"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -185,4 +169,4 @@ packages:
     version: "0.1.4-beta"
 sdks:
   dart: ">=3.1.1 <4.0.0"
-  flutter: ">=1.24.0-7.0"
+  flutter: ">=1.17.0"

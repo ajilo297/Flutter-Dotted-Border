@@ -18,6 +18,7 @@ class DashedPainter extends CustomPainter {
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
   final EdgeInsets padding;
+  final Animation? animation;
 
   DashedPainter({
     this.strokeWidth = 2,
@@ -28,7 +29,8 @@ class DashedPainter extends CustomPainter {
     this.strokeCap = StrokeCap.butt,
     this.customPath,
     this.padding = EdgeInsets.zero,
-  }) {
+    this.animation,
+  }) : super(repaint: animation) {
     assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
   }
 
@@ -56,6 +58,7 @@ class DashedPainter extends CustomPainter {
       _path = dashPath(
         customPath!(size),
         dashArray: CircularIntervalList(dashPattern),
+        animationValue: animation?.value,
       );
     } else {
       _path = _getPath(size);
@@ -82,7 +85,11 @@ class DashedPainter extends CustomPainter {
         break;
     }
 
-    return dashPath(path, dashArray: CircularIntervalList(dashPattern));
+    return dashPath(
+      path,
+      dashArray: CircularIntervalList(dashPattern),
+      animationValue: animation?.value,
+    );
   }
 
   /// Returns a circular path of [size]
