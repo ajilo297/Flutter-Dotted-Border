@@ -16,6 +16,7 @@ class DashedPainter extends CustomPainter {
   final Gradient? gradient;
   final BorderType borderType;
   final Radius radius;
+  final BorderRadius? borderRadius;
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
   final EdgeInsets padding;
@@ -27,6 +28,7 @@ class DashedPainter extends CustomPainter {
     this.gradient,
     this.borderType = BorderType.Rect,
     this.radius = const Radius.circular(0),
+    this.borderRadius = const BorderRadius.all(Radius.circular(0)),
     this.strokeCap = StrokeCap.butt,
     this.customPath,
     this.padding = EdgeInsets.zero,
@@ -80,7 +82,7 @@ class DashedPainter extends CustomPainter {
         path = _getCirclePath(size);
         break;
       case BorderType.RRect:
-        path = _getRRectPath(size, radius);
+        path = _getRRectPath(size, radius, borderRadius);
         break;
       case BorderType.Rect:
         path = _getRectPath(size);
@@ -114,7 +116,24 @@ class DashedPainter extends CustomPainter {
   }
 
   /// Returns a Rounded Rectangular Path with [radius] of [size]
-  Path _getRRectPath(Size size, Radius radius) {
+  Path _getRRectPath(Size size, Radius radius, BorderRadius? borderRadius) {
+    if (borderRadius != null) {
+      final rect = Rect.fromLTWH(0, 0, size.width, size.height,);
+      return Path()
+        ..addRRect(
+          RRect.fromLTRBAndCorners(
+            rect.left,
+            rect.top,
+            rect.right,
+            rect.bottom,
+            topLeft: borderRadius.topLeft,
+            topRight: borderRadius.topRight,
+            bottomRight: borderRadius.bottomRight,
+            bottomLeft: borderRadius.bottomLeft,
+          ),
+        );
+    }
+
     return Path()
       ..addRRect(
         RRect.fromRectAndRadius(
