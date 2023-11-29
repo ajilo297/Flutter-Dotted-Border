@@ -47,6 +47,10 @@ class DottedBorder extends StatelessWidget {
     return Stack(
       fit: stackFit,
       children: <Widget>[
+        Padding(
+          padding: padding,
+          child: child,
+        ),
         Positioned.fill(
           child: CustomPaint(
             painter: DashedPainter(
@@ -61,10 +65,6 @@ class DottedBorder extends StatelessWidget {
               strokeCap: strokeCap,
             ),
           ),
-        ),
-        Padding(
-          padding: padding,
-          child: child,
         ),
       ],
     );
