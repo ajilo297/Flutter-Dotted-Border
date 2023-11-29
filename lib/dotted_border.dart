@@ -52,17 +52,19 @@ class DottedBorder extends StatelessWidget {
           child: child,
         ),
         Positioned.fill(
-          child: CustomPaint(
-            painter: DashedPainter(
-              padding: borderPadding,
-              strokeWidth: strokeWidth,
-              radius: radius,
-              color: color,
-              gradient: gradient,
-              borderType: borderType,
-              dashPattern: dashPattern,
-              customPath: customPath,
-              strokeCap: strokeCap,
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: DashedPainter(
+                padding: borderPadding,
+                strokeWidth: strokeWidth,
+                radius: radius,
+                color: color,
+                gradient: gradient,
+                borderType: borderType,
+                dashPattern: dashPattern,
+                customPath: customPath,
+                strokeCap: strokeCap,
+              ),
             ),
           ),
         ),
