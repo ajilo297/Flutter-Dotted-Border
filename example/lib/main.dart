@@ -11,29 +11,25 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(useMaterial3: true),
         home: Scaffold(
           appBar: AppBar(title: const Text('Dotted Border')),
-          body: const SafeArea(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    _RectDottedBorder(key: Key('rect_dotted_border')),
-                    SizedBox(height: 16),
-                    _RoundedRectDottedBorder(
-                      key: Key('rounded_rect_dotted_border'),
-                    ),
-                    SizedBox(height: 16),
-                    _OvalDottedBorder(key: Key('oval_dotted_border')),
-                    SizedBox(height: 16),
-                    _CircleDottedBorder(key: Key('circle_dotted_border')),
-                    SizedBox(height: 16),
-                    _CustomPathBorder(key: Key('custom_path_dotted_border')),
-                    SizedBox(height: 16),
-                    _GradientBorder(key: Key('gradient_dotted_border')),
-                  ],
+          body: SafeArea(
+            child: ListView(
+              children: const <Widget>[
+                _RectDottedBorder(key: Key('rect_dotted_border')),
+                _RoundedRectDottedBorder(
+                  key: Key('rounded_rect_dotted_border'),
                 ),
-              ),
+                _OvalDottedBorder(key: Key('oval_dotted_border')),
+                _CircleDottedBorder(key: Key('circle_dotted_border')),
+                _CustomPathBorder(key: Key('custom_path_dotted_border')),
+                _GradientBorder(key: Key('gradient_dotted_border')),
+              ]
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: e,
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ),
