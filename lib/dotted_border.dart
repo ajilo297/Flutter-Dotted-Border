@@ -26,13 +26,15 @@ class DottedBorder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = options is RoundedRectDottedBorderOptions
-        ? (options as RoundedRectDottedBorderOptions).radius
-        : Radius.zero;
+    final radius = switch (options) {
+      RoundedRectDottedBorderOptions options => options.radius,
+      _ => Radius.zero,
+    };
 
-    final customPath = options is CustomPathDottedBorderOptions
-        ? (options as CustomPathDottedBorderOptions).customPath
-        : null;
+    final customPath = switch (options) {
+      CustomPathDottedBorderOptions options => options.customPath,
+      _ => null,
+    };
 
     return Stack(
       fit: options.stackFit,

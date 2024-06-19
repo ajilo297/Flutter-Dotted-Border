@@ -5,7 +5,14 @@ import 'enums.dart';
 typedef PathBuilder = Path Function(Size size);
 
 /// Provides options for customising the dotted border.
-abstract base class DottedBorderOptions {
+///
+/// Allowed border options:
+/// - [CustomPathDottedBorderOptions]
+/// - [RoundedRectDottedBorderOptions]
+/// - [RectDottedBorderOptions]
+/// - [CircularDottedBorderOptions]
+/// - [OvalDottedBorderOptions]
+sealed class DottedBorderOptions {
   const DottedBorderOptions({
     required this.borderType,
     this.padding = const EdgeInsets.all(2),
@@ -38,10 +45,11 @@ abstract base class DottedBorderOptions {
   /// `[1, 1]` will draw a dash and a gap of 1 unit each.
   final List<double> dashPattern;
 
-  /// The stroke cap of the dotted border
+  /// The [strokeCap] will determine the shape of the line endings for the
+  /// border
   final StrokeCap strokeCap;
 
-  /// The fit provided to the containing [Stack]
+  /// The fit provided to the parent stack
   final StackFit stackFit;
 
   /// The type of border to be drawn
