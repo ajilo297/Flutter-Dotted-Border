@@ -24,6 +24,9 @@ class DottedBorder extends StatelessWidget {
   /// The dotted border options.
   final DottedBorderOptions options;
 
+  /// Whether the border should ignore pointer events.
+  final bool ignoring = true;
+
   @override
   Widget build(BuildContext context) {
     final radius = switch (options) {
@@ -39,38 +42,24 @@ class DottedBorder extends StatelessWidget {
     return Stack(
       fit: options.stackFit,
       children: <Widget>[
-        Positioned.fill(
-          child: CustomPaint(
-            painter: DashedPainter(
-              padding: options.borderPadding,
-              strokeWidth: options.strokeWidth,
-              radius: radius,
-              color: options.color,
-              gradient: options.gradient,
-              borderType: options.borderType,
-              dashPattern: options.dashPattern,
-              customPath: customPath,
-              strokeCap: options.strokeCap,
-            ),
-          ),
-        ),
         Padding(
           padding: options.padding,
           child: child,
         ),
         Positioned.fill(
           child: IgnorePointer(
+            ignoring: ignoring,
             child: CustomPaint(
               painter: DashedPainter(
-                padding: borderPadding,
-                strokeWidth: strokeWidth,
+                padding: options.borderPadding,
+                strokeWidth: options.strokeWidth,
                 radius: radius,
-                color: color,
-                gradient: gradient,
-                borderType: borderType,
-                dashPattern: dashPattern,
+                color: options.color,
+                gradient: options.gradient,
+                borderType: options.borderType,
+                dashPattern: options.dashPattern,
                 customPath: customPath,
-                strokeCap: strokeCap,
+                strokeCap: options.strokeCap,
               ),
             ),
           ),
