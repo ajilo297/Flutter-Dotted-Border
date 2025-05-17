@@ -6,16 +6,14 @@ enum InvalidDashPatternResult {
   negativeDashPattern,
   zeroDashPattern;
 
-  String get message {
-    switch (this) {
-      case InvalidDashPatternResult.nullDashPattern:
-        return 'Dash pattern cannot be null.';
-      case InvalidDashPatternResult.emptyDashPattern:
-        return 'Dash pattern cannot be empty.';
-      case InvalidDashPatternResult.negativeDashPattern:
-        return 'Dash pattern cannot have negative values.';
-      case InvalidDashPatternResult.zeroDashPattern:
-        return 'Dash pattern cannot contain all zeros.';
-    }
-  }
+  String get message => switch (this) {
+        InvalidDashPatternResult.nullDashPattern =>
+          'Dash pattern cannot be null.',
+        InvalidDashPatternResult.emptyDashPattern =>
+          'Dash pattern cannot be empty.',
+        InvalidDashPatternResult.negativeDashPattern =>
+          'Dash pattern cannot have negative values.',
+        InvalidDashPatternResult.zeroDashPattern =>
+          'Dash pattern cannot contain all zeros.'
+      };
 }
