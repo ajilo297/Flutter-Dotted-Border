@@ -3,25 +3,76 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
+  late final controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 500),
+  );
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData(useMaterial3: true),
         home: Scaffold(
-          appBar: AppBar(title: const Text('Dotted Border')),
+          appBar: AppBar(
+          title: Text('Dotted Border'),
+          actions: [
+            AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return Switch(
+                  value: controller.isAnimating,
+                  onChanged: (value) {
+                    if(value) {
+                      controller.repeat();
+                    } else {
+                      controller.stop();
+                    }
+                  }
+                );
+              },
+            ),
+          ],
+        ),
           body: SafeArea(
             child: ListView(
-              children: const <Widget>[
-                _RectDottedBorder(key: Key('rect_dotted_border')),
+              children: <Widget>[
+                _RectDottedBorder(
+                  key: Key('rect_dotted_border'),
+                  animation: controller,
+                ),
                 _RoundedRectDottedBorder(
                   key: Key('rounded_rect_dotted_border'),
+                  animation: controller,
                 ),
-                _OvalDottedBorder(key: Key('oval_dotted_border')),
-                _CircleDottedBorder(key: Key('circle_dotted_border')),
-                _CustomPathBorder(key: Key('custom_path_dotted_border')),
-                _GradientBorder(key: Key('gradient_dotted_border')),
+                _OvalDottedBorder(
+                  key: Key('oval_dotted_border'),
+                  animation: controller,
+                ),
+                _CircleDottedBorder(
+                  key: Key('circle_dotted_border'),
+                  animation: controller,
+                ),
+                _CustomPathBorder(
+                  key: Key('custom_path_dotted_border'),
+                  animation: controller,
+                ),
+                _GradientBorder(
+                  key: Key('gradient_dotted_border'),
+                  animation: controller,
+                ),
               ]
                   .map(
                     (e) => Padding(
@@ -37,7 +88,9 @@ class MyApp extends StatelessWidget {
 }
 
 class _RectDottedBorder extends StatelessWidget {
-  const _RectDottedBorder({super.key});
+  const _RectDottedBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => const Center(
@@ -58,7 +111,9 @@ class _RectDottedBorder extends StatelessWidget {
 }
 
 class _RoundedRectDottedBorder extends StatelessWidget {
-  const _RoundedRectDottedBorder({super.key});
+  const _RoundedRectDottedBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => const Center(
@@ -82,7 +137,9 @@ class _RoundedRectDottedBorder extends StatelessWidget {
 }
 
 class _OvalDottedBorder extends StatelessWidget {
-  const _OvalDottedBorder({super.key});
+  const _OvalDottedBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => const Center(
@@ -105,7 +162,9 @@ class _OvalDottedBorder extends StatelessWidget {
 }
 
 class _CircleDottedBorder extends StatelessWidget {
-  const _CircleDottedBorder({super.key});
+  const _CircleDottedBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => const Center(
@@ -126,7 +185,9 @@ class _CircleDottedBorder extends StatelessWidget {
 }
 
 class _CustomPathBorder extends StatelessWidget {
-  const _CustomPathBorder({super.key});
+  const _CustomPathBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -152,7 +213,9 @@ class _CustomPathBorder extends StatelessWidget {
 }
 
 class _GradientBorder extends StatelessWidget {
-  const _GradientBorder({super.key});
+  const _GradientBorder({super.key, this.animation});
+
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) => const Center(
