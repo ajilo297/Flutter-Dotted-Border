@@ -93,14 +93,15 @@ class _RectDottedBorder extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          options: RectDottedBorderOptions(
+          animation: animation,
+          options: const RectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             padding: EdgeInsets.all(16),
           ),
-          child: Text(
+          child: const Text(
             'Rectangular Border',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -116,16 +117,17 @@ class _RoundedRectDottedBorder extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          options: RoundedRectDottedBorderOptions(
+          animation: animation,
+          options: const RoundedRectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             radius: Radius.circular(16),
             color: Colors.indigo,
             padding: EdgeInsets.all(16),
           ),
-          child: Text(
+          child: const Text(
             'Rounded Rect Border',
             style: TextStyle(
               color: Colors.indigo,
@@ -142,15 +144,16 @@ class _OvalDottedBorder extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          options: OvalDottedBorderOptions(
+          animation: animation,
+          options: const OvalDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             color: Colors.green,
             padding: EdgeInsets.all(16),
           ),
-          child: Text(
+          child: const Text(
             'Oval Border',
             style: TextStyle(
               color: Colors.green,
@@ -167,15 +170,16 @@ class _CircleDottedBorder extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          options: CircularDottedBorderOptions(
+          animation: animation,
+          options: const CircularDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 4,
             color: Colors.red,
             padding: EdgeInsets.all(4),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.person,
             size: 64,
             color: Colors.red,
@@ -192,6 +196,7 @@ class _CustomPathBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: DottedBorder(
+          animation: animation,
           options: CustomPathDottedBorderOptions(
             padding: const EdgeInsets.all(8),
             color: Colors.purple,
@@ -218,9 +223,10 @@ class _GradientBorder extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
-  Widget build(BuildContext context) => const Center(
+  Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          options: RoundedRectDottedBorderOptions(
+          animation: animation,
+          options: const RoundedRectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 4,
             radius: Radius.circular(16),
@@ -239,7 +245,7 @@ class _GradientBorder extends StatelessWidget {
             ),
             padding: EdgeInsets.all(16),
           ),
-          child: Text(
+          child: const Text(
             'Rainbow Border',
             style: TextStyle(
               color: Colors.indigo,
