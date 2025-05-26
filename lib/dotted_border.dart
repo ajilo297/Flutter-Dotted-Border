@@ -9,14 +9,20 @@ export 'src/dotted_border_options.dart';
 
 /// A widget that draws a dotted border around its child.
 ///
-/// The [child] is painted on top of the border.
-/// Customization of the border is achieved by specifying the desired [options].
+/// The [child] is painted on top of or under the border, depending on
+/// [childOnTop]. Customization of the border is achieved by specifying the
+/// desired [options].
+///
+/// An [animation] can be used to animate the dotted border. A repeated
+/// animation from 0 to 1 gives the effect of a continuously rotating border.
 class DottedBorder extends StatelessWidget {
   const DottedBorder({
     super.key,
     required this.child,
     this.options = const RectDottedBorderOptions(),
+    this.ignoring = true,
     this.animation,
+    this.childOnTop = true,
   });
 
   /// The widget below this widget in the tree.
@@ -26,10 +32,13 @@ class DottedBorder extends StatelessWidget {
   final DottedBorderOptions options;
 
   /// Whether the border should ignore pointer events.
-  final bool ignoring = true;
+  final bool ignoring;
 
   /// The animation for the dotted border.
   final Animation<double>? animation;
+
+  /// Wether to paint the child on top of the border.
+  final bool childOnTop;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +52,12 @@ class DottedBorder extends StatelessWidget {
       _ => null,
     };
 
+    final stackChild = Padding(padding: options.padding, child: child);
+
     return Stack(
       fit: options.stackFit,
       children: <Widget>[
-        Padding(padding: options.padding, child: child),
+        if (!childOnTop) stackChild,
         Positioned.fill(
           child: IgnorePointer(
             ignoring: ignoring,
@@ -66,6 +77,7 @@ class DottedBorder extends StatelessWidget {
             ),
           ),
         ),
+        if (childOnTop) stackChild,
       ],
     );
   }
