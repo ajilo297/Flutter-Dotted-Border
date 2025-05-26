@@ -1,8 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:path_drawing/path_drawing.dart' as pd hide CircularIntervalList;
-import 'package:path_drawing/path_drawing.dart' show CircularIntervalList;
 
+import 'dash_path.dart';
 import 'enums.dart';
 import 'validators.dart';
 
@@ -18,7 +17,8 @@ class DashedPainter extends CustomPainter {
     this.strokeCap = StrokeCap.butt,
     this.customPath,
     this.padding = EdgeInsets.zero,
-  });
+    this.animation,
+  }) : super(repaint: animation);
 
   /// The thickness of the dashed line
   final double strokeWidth;
@@ -47,6 +47,9 @@ class DashedPainter extends CustomPainter {
 
   /// The padding between the dashed line and the child
   final EdgeInsets padding;
+
+  /// The animation for the dash pattern.
+  final Animation<double>? animation;
 
   @override
   void paint(Canvas canvas, Size originalSize) {
@@ -79,7 +82,7 @@ class DashedPainter extends CustomPainter {
     }
 
     canvas.drawPath(
-      pd.dashPath(_path, dashArray: CircularIntervalList(dashPattern)),
+      dashPath(_path, dashArray: CircularIntervalList(dashPattern)),
       paint,
     );
   }

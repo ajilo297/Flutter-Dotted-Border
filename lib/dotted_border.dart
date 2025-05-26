@@ -16,6 +16,7 @@ class DottedBorder extends StatelessWidget {
     super.key,
     required this.child,
     this.options = const RectDottedBorderOptions(),
+    this.animation,
   });
 
   /// The widget below this widget in the tree.
@@ -26,6 +27,9 @@ class DottedBorder extends StatelessWidget {
 
   /// Whether the border should ignore pointer events.
   final bool ignoring = true;
+
+  /// The animation for the dotted border.
+  final Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,7 @@ class DottedBorder extends StatelessWidget {
                 dashPattern: options.dashPattern,
                 customPath: customPath,
                 strokeCap: options.strokeCap,
+                animation: animation,
               ),
             ),
           ),
