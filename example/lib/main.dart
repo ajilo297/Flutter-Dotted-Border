@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
                 _CircleDottedBorder(key: Key('circle_dotted_border')),
                 _CustomPathBorder(key: Key('custom_path_dotted_border')),
                 _GradientBorder(key: Key('gradient_dotted_border')),
-                _AnimatedDottedBorder(key: Key('gradient_dotted_border')),
+                _AnimatedDottedBorder(key: Key('animated_dotted_border')),
               ]
                   .map(
                     (e) => Padding(
@@ -196,15 +196,15 @@ class _AnimatedDottedBorder extends StatefulWidget {
 }
 
 class _AnimatedDottedBorderState extends State<_AnimatedDottedBorder> with SingleTickerProviderStateMixin {
-  late final controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 500),
-  );
+  late final AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller.repeat();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat();
   }
 
   @override
