@@ -82,7 +82,11 @@ class DashedPainter extends CustomPainter {
     }
 
     canvas.drawPath(
-      dashPath(_path, dashArray: CircularIntervalList(dashPattern)),
+      dashPath(
+        _path,
+        dashArray: CircularIntervalList(dashPattern),
+        animationValue: animation?.value,
+      ),
       paint,
     );
   }
