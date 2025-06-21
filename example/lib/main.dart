@@ -3,76 +3,26 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  late final controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 500),
-  );
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-  
   @override
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData(useMaterial3: true),
         home: Scaffold(
-          appBar: AppBar(
-          title: Text('Dotted Border'),
-          actions: [
-            AnimatedBuilder(
-              animation: controller,
-              builder: (context, child) {
-                return Switch(
-                  value: controller.isAnimating,
-                  onChanged: (value) {
-                    if(value) {
-                      controller.repeat();
-                    } else {
-                      controller.stop();
-                    }
-                  }
-                );
-              },
-            ),
-          ],
-        ),
+          appBar: AppBar(title: const Text('Dotted Border')),
           body: SafeArea(
             child: ListView(
-              children: <Widget>[
-                _RectDottedBorder(
-                  key: Key('rect_dotted_border'),
-                  animation: controller,
-                ),
+              children: const <Widget>[
+                _RectDottedBorder(key: Key('rect_dotted_border')),
                 _RoundedRectDottedBorder(
                   key: Key('rounded_rect_dotted_border'),
-                  animation: controller,
                 ),
-                _OvalDottedBorder(
-                  key: Key('oval_dotted_border'),
-                  animation: controller,
-                ),
-                _CircleDottedBorder(
-                  key: Key('circle_dotted_border'),
-                  animation: controller,
-                ),
-                _CustomPathBorder(
-                  key: Key('custom_path_dotted_border'),
-                  animation: controller,
-                ),
-                _GradientBorder(
-                  key: Key('gradient_dotted_border'),
-                  animation: controller,
-                ),
+                _OvalDottedBorder(key: Key('oval_dotted_border')),
+                _CircleDottedBorder(key: Key('circle_dotted_border')),
+                _CustomPathBorder(key: Key('custom_path_dotted_border')),
+                _GradientBorder(key: Key('gradient_dotted_border')),
+                _AnimatedDottedBorder(key: Key('gradient_dotted_border')),
               ]
                   .map(
                     (e) => Padding(
@@ -88,20 +38,17 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 }
 
 class _RectDottedBorder extends StatelessWidget {
-  const _RectDottedBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _RectDottedBorder({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: DottedBorder(
-          animation: animation,
-          options: const RectDottedBorderOptions(
+          options: RectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             padding: EdgeInsets.all(16),
           ),
-          child: const Text(
+          child: Text(
             'Rectangular Border',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -112,22 +59,19 @@ class _RectDottedBorder extends StatelessWidget {
 }
 
 class _RoundedRectDottedBorder extends StatelessWidget {
-  const _RoundedRectDottedBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _RoundedRectDottedBorder({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: DottedBorder(
-          animation: animation,
-          options: const RoundedRectDottedBorderOptions(
+          options: RoundedRectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             radius: Radius.circular(16),
             color: Colors.indigo,
             padding: EdgeInsets.all(16),
           ),
-          child: const Text(
+          child: Text(
             'Rounded Rect Border',
             style: TextStyle(
               color: Colors.indigo,
@@ -139,21 +83,18 @@ class _RoundedRectDottedBorder extends StatelessWidget {
 }
 
 class _OvalDottedBorder extends StatelessWidget {
-  const _OvalDottedBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _OvalDottedBorder({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: DottedBorder(
-          animation: animation,
-          options: const OvalDottedBorderOptions(
+          options: OvalDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 2,
             color: Colors.green,
             padding: EdgeInsets.all(16),
           ),
-          child: const Text(
+          child: Text(
             'Oval Border',
             style: TextStyle(
               color: Colors.green,
@@ -165,21 +106,18 @@ class _OvalDottedBorder extends StatelessWidget {
 }
 
 class _CircleDottedBorder extends StatelessWidget {
-  const _CircleDottedBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _CircleDottedBorder({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: DottedBorder(
-          animation: animation,
-          options: const CircularDottedBorderOptions(
+          options: CircularDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 4,
             color: Colors.red,
             padding: EdgeInsets.all(4),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.person,
             size: 64,
             color: Colors.red,
@@ -189,14 +127,11 @@ class _CircleDottedBorder extends StatelessWidget {
 }
 
 class _CustomPathBorder extends StatelessWidget {
-  const _CustomPathBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _CustomPathBorder({super.key});
 
   @override
   Widget build(BuildContext context) => Center(
         child: DottedBorder(
-          animation: animation,
           options: CustomPathDottedBorderOptions(
             padding: const EdgeInsets.all(8),
             color: Colors.purple,
@@ -218,15 +153,12 @@ class _CustomPathBorder extends StatelessWidget {
 }
 
 class _GradientBorder extends StatelessWidget {
-  const _GradientBorder({super.key, this.animation});
-
-  final Animation<double>? animation;
+  const _GradientBorder({super.key});
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: DottedBorder(
-          animation: animation,
-          options: const RoundedRectDottedBorderOptions(
+          options: RoundedRectDottedBorderOptions(
             dashPattern: [10, 5],
             strokeWidth: 4,
             radius: Radius.circular(16),
@@ -245,10 +177,57 @@ class _GradientBorder extends StatelessWidget {
             ),
             padding: EdgeInsets.all(16),
           ),
-          child: const Text(
+          child: Text(
             'Rainbow Border',
             style: TextStyle(
               color: Colors.indigo,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+}
+
+class _AnimatedDottedBorder extends StatefulWidget {
+  const _AnimatedDottedBorder({super.key});
+
+  @override
+  State<_AnimatedDottedBorder> createState() => _AnimatedDottedBorderState();
+}
+
+class _AnimatedDottedBorderState extends State<_AnimatedDottedBorder> with SingleTickerProviderStateMixin {
+  late final controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 500),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: DottedBorder(
+          animation: controller,
+          options: const RoundedRectDottedBorderOptions(
+            dashPattern: [10, 5],
+            strokeWidth: 2,
+            radius: Radius.circular(16),
+            color: Colors.green,
+            padding: EdgeInsets.all(16),
+          ),
+          child: const Text(
+            'Animated Border',
+            style: TextStyle(
+              color: Colors.green,
               fontWeight: FontWeight.bold,
             ),
           ),
