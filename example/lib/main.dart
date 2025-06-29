@@ -195,7 +195,8 @@ class _AnimatedDottedBorder extends StatefulWidget {
   State<_AnimatedDottedBorder> createState() => _AnimatedDottedBorderState();
 }
 
-class _AnimatedDottedBorderState extends State<_AnimatedDottedBorder> with SingleTickerProviderStateMixin {
+class _AnimatedDottedBorderState extends State<_AnimatedDottedBorder>
+    with SingleTickerProviderStateMixin {
   late final AnimationController controller;
 
   @override

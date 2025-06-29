@@ -27,7 +27,8 @@ Path dashPath(
   for (final PathMetric metric in source.computeMetrics()) {
     double distance = dashOffset._calculate(metric.length);
     // distance is decreased by the length of the last dash that is clipped. This ensures a smooth animation
-    final totalDashes = (metric.length / dashArray.total * dashArray._vals.length).ceil();
+    final totalDashes =
+        (metric.length / dashArray.total * dashArray._vals.length).ceil();
     final clippedLength = totalDashes * dashArray.total - metric.length;
     distance -= clippedLength;
 
@@ -38,9 +39,11 @@ Path dashPath(
     final totalArrays = metric.length / dashArray.total;
     final neededArrays = totalArrays.ceil();
     final neededArrayLength = metric.length / neededArrays;
-    final dashCorrection = (dashArray.total - neededArrayLength) / dashArray._vals.length;
-    final adjustedDashArray =
-        CircularIntervalList(dashArray._vals.map((e) => e - dashCorrection).toList());
+    final dashCorrection =
+        (dashArray.total - neededArrayLength) / dashArray._vals.length;
+    final adjustedDashArray = CircularIntervalList(
+      dashArray._vals.map((e) => e - dashCorrection).toList(),
+    );
 
     while (distance < metric.length) {
       final double len = adjustedDashArray.next;
@@ -74,20 +77,22 @@ class DashOffset {
   ///
   /// `percentage` will be clamped between 0.0 and 1.0.
   DashOffset.percentage(double percentage)
-      : _rawVal = percentage.clamp(0.0, 1.0),
-        _dashOffsetType = _DashOffsetType.Percentage;
+    : _rawVal = percentage.clamp(0.0, 1.0),
+      _dashOffsetType = _DashOffsetType.Percentage;
 
   /// Create a DashOffset that will be measured in terms of absolute pixels
   /// along the length of a [Path] segment.
   const DashOffset.absolute(double start)
-      : _rawVal = start,
-        _dashOffsetType = _DashOffsetType.Absolute;
+    : _rawVal = start,
+      _dashOffsetType = _DashOffsetType.Absolute;
 
   final double _rawVal;
   final _DashOffsetType _dashOffsetType;
 
   double _calculate(double length) {
-    return _dashOffsetType == _DashOffsetType.Absolute ? _rawVal : length * _rawVal;
+    return _dashOffsetType == _DashOffsetType.Absolute
+        ? _rawVal
+        : length * _rawVal;
   }
 
   @override
@@ -116,7 +121,8 @@ class DashOffset {
 /// not have a moveNext.
 class CircularIntervalList<T extends num> {
   // if the interval is not symmetric, we make it so
-  CircularIntervalList(List<T> vals) : _vals = vals.length.isEven ? vals : [...vals, ...vals];
+  CircularIntervalList(List<T> vals)
+    : _vals = vals.length.isEven ? vals : [...vals, ...vals];
 
   final List<T> _vals;
   int _idx = 0;

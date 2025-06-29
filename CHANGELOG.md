@@ -1,7 +1,11 @@
-### [3.0.1] - 17 May, 2023
+### [3.1.0] - 29 Jun, 2025
+- Add animation to border
+- Add child on top parameter to the border
+
+### [3.0.1] - 17 May, 2025
 - Format code
 
-### [3.0.0] - 17 May, 2023
+### [3.0.0] - 17 May, 2025
 - BREAKING changes to DottedBorder API
 
 ### [2.1.0] - 25 September, 2023
