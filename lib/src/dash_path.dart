@@ -1,3 +1,7 @@
+// Adapted from the 'path_drawing' package (MIT licensed)
+// Original author: Dan Field
+// https://github.com/dnfield/flutter_path_drawing
+
 import 'dart:ui';
 
 /// Creates a new path that is drawn from the segments of `source`.
