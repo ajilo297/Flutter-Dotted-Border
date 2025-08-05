@@ -6,6 +6,7 @@ import 'src/dashed_painter.dart';
 import 'src/dotted_border_options.dart';
 
 export 'src/dotted_border_options.dart';
+export 'src/dashed_border.dart';
 
 /// A widget that draws a dotted border around its child.
 ///
