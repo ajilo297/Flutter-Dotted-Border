@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
         home: Scaffold(
           appBar: AppBar(title: const Text('Dotted Border')),
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
                 _CircleDottedBorder(key: Key('circle_dotted_border')),
                 _CustomPathBorder(key: Key('custom_path_dotted_border')),
                 _GradientBorder(key: Key('gradient_dotted_border')),
+                _DotDashDotBorder(key: Key('dot_dash_dot_border')),
                 _AnimatedDottedBorder(key: Key('animated_dotted_border')),
               ]
                   .map(
@@ -181,6 +183,30 @@ class _GradientBorder extends StatelessWidget {
             'Rainbow Border',
             style: TextStyle(
               color: Colors.indigo,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+}
+
+class _DotDashDotBorder extends StatelessWidget {
+  const _DotDashDotBorder({super.key});
+
+  @override
+  Widget build(BuildContext context) => const Center(
+        child: DottedBorder(
+          options: RoundedRectDottedBorderOptions(
+            patternType: BorderPatternType.DotDashDot,
+            strokeWidth: 3,
+            radius: Radius.circular(16),
+            color: Colors.teal,
+            padding: EdgeInsets.all(16),
+          ),
+          child: Text(
+            'Dot-Dash-Dot Border',
+            style: TextStyle(
+              color: Colors.teal,
               fontWeight: FontWeight.bold,
             ),
           ),

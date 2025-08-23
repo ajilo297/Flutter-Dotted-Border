@@ -1,3 +1,11 @@
+### [3.2.0] - Unreleased
+- Add BorderPatternType enum with support for different border patterns
+- Add Dot-Dash-Dot pattern (.-.-.-.) 
+- Add Dashed pattern
+- Add Dotted pattern (default)
+- Add Custom pattern for custom dash patterns
+- Improve border pattern customization
+
 ### [3.1.0] - 29 Jun, 2025
 - Add animation to border
 - Add child on top parameter to the border

@@ -50,13 +50,37 @@ DottedBorder(
 )
 ```
 
+### Border Pattern Types
+
+This package supports different border pattern types:
+
+- **Dotted** - Traditional dotted pattern (default)
+- **Dashed** - Traditional dashed pattern
+- **Dot-Dash-Dot** - Dot-dash-dot pattern (.-.-.-.)
+- **Custom** - Custom pattern using dashPattern
+
+#### Example
+```dart
+DottedBorder(
+  options: RoundedRectDottedBorderOptions(
+    patternType: BorderPatternType.DotDashDot,
+    strokeWidth: 3,
+    radius: Radius.circular(16),
+    color: Colors.teal,
+    padding: EdgeInsets.all(16),
+  ),
+  child: Text('Dot-Dash-Dot Border'),
+)
+```
+
 ### Dash Pattern
 
-You can also specify the Dash Sequence by passing in an Array of Doubles
+You can also specify the Dash Sequence by passing in an Array of Doubles for custom patterns
 
 #### Example
 ```dart
 RectDottedBorderOptions(
+  patternType: BorderPatternType.Custom,
   dashPattern: [10, 5],
   strokeWidth: 2,
   padding: EdgeInsets.all(16),

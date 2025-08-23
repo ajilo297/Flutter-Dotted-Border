@@ -23,6 +23,7 @@ sealed class DottedBorderOptions {
     this.strokeCap = StrokeCap.butt,
     this.stackFit = StackFit.loose,
     this.gradient,
+    this.patternType = BorderPatternType.Dotted,
   });
 
   /// The padding between the dotted border and the child
@@ -59,6 +60,13 @@ sealed class DottedBorderOptions {
   /// - [BorderType.Oval]
   /// - [null] for custom path
   final BorderType? borderType;
+
+  /// The type of border pattern to be drawn
+  /// - [BorderPatternType.Dotted] - Traditional dotted pattern
+  /// - [BorderPatternType.Dashed] - Traditional dashed pattern  
+  /// - [BorderPatternType.DotDashDot] - Dot-dash-dot pattern (-.-.-.)
+  /// - [BorderPatternType.Custom] - Custom pattern using dashPattern
+  final BorderPatternType patternType;
 }
 
 /// Provides options for drawing a dotted border with a custom path.
@@ -73,6 +81,7 @@ final class CustomPathDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: null);
 
   /// The custom path to be drawn
@@ -91,6 +100,7 @@ final class RoundedRectDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.RRect);
 
   /// The radius of the rounded rectangle
@@ -108,6 +118,7 @@ final class RectDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Rect);
 }
 
@@ -122,6 +133,7 @@ final class CircularDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Circle);
 }
 
@@ -136,5 +148,6 @@ final class OvalDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Oval);
 }
