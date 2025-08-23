@@ -1,5 +1,12 @@
 enum BorderType { Circle, RRect, Rect, Oval }
 
+enum BorderPatternType { 
+  Dotted, 
+  Dashed, 
+  DotDashDot, 
+  Custom 
+}
+
 enum InvalidDashPatternResult {
   nullDashPattern,
   emptyDashPattern,
