@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
         home: Scaffold(
           appBar: AppBar(title: const Text('Dotted Border')),
