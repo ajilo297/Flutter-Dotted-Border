@@ -18,6 +18,7 @@ class DashedPainter extends CustomPainter {
     this.customPath,
     this.padding = EdgeInsets.zero,
     this.animation,
+    this.patternType = BorderPatternType.Dotted,
   }) : super(repaint: animation);
 
   /// The thickness of the dashed line
@@ -51,6 +52,9 @@ class DashedPainter extends CustomPainter {
   /// The animation for the dash pattern.
   final Animation<double>? animation;
 
+  /// The type of border pattern to be drawn
+  final BorderPatternType patternType;
+
   @override
   void paint(Canvas canvas, Size originalSize) {
     final Size size;
@@ -81,10 +85,12 @@ class DashedPainter extends CustomPainter {
       throw ArgumentError(result.message);
     }
 
+    final effectiveDashPattern = _getEffectiveDashPattern();
+    
     canvas.drawPath(
       dashPath(
         _path,
-        dashArray: CircularIntervalList(dashPattern),
+        dashArray: CircularIntervalList(effectiveDashPattern),
         animationValue: animation?.value,
       ),
       paint,
@@ -97,6 +103,14 @@ class DashedPainter extends CustomPainter {
     BorderType.Oval => size.toOvalPath(),
     BorderType.Circle => size.toCirclePath(),
     _ => size.toRectangularPath(),
+  };
+
+  /// Returns the effective dash pattern based on the pattern type
+  List<double> _getEffectiveDashPattern() => switch (patternType) {
+    BorderPatternType.Dotted => [2, 2],
+    BorderPatternType.Dashed => [8, 4],
+    BorderPatternType.DotDashDot => [2, 2, 8, 2, 2, 4],
+    BorderPatternType.Custom => dashPattern,
   };
 
   @override

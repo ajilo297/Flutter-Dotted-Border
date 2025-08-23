@@ -23,6 +23,7 @@ sealed class DottedBorderOptions {
     this.strokeCap = StrokeCap.butt,
     this.stackFit = StackFit.loose,
     this.gradient,
+    this.patternType = BorderPatternType.Dotted,
   });
 
   /// The padding between the dotted border and the child
@@ -59,6 +60,13 @@ sealed class DottedBorderOptions {
   /// - [BorderType.Oval]
   /// - [null] for custom path
   final BorderType? borderType;
+
+  /// The type of border pattern to be drawn
+  /// - [BorderPatternType.Dotted] - Traditional dotted pattern
+  /// - [BorderPatternType.Dashed] - Traditional dashed pattern  
+  /// - [BorderPatternType.DotDashDot] - Dot-dash-dot pattern (-.-.-.)
+  /// - [BorderPatternType.Custom] - Custom pattern using dashPattern
+  final BorderPatternType patternType;
 }
 
 /// Provides options for drawing a dotted border with a custom path.
