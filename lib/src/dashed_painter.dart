@@ -123,7 +123,8 @@ class DashedPainter extends CustomPainter {
       oldDelegate.radius != this.radius ||
       oldDelegate.strokeCap != this.strokeCap ||
       oldDelegate.customPath != this.customPath ||
-      oldDelegate.padding != this.padding;
+      oldDelegate.padding != this.padding ||
+      oldDelegate.patternType != this.patternType;
 }
 
 /// Provides extension methods on [Size] to convert it to a path.

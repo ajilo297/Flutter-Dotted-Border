@@ -81,6 +81,7 @@ final class CustomPathDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: null);
 
   /// The custom path to be drawn
@@ -99,6 +100,7 @@ final class RoundedRectDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.RRect);
 
   /// The radius of the rounded rectangle

@@ -6,6 +6,7 @@ import 'src/dashed_painter.dart';
 import 'src/dotted_border_options.dart';
 
 export 'src/dotted_border_options.dart';
+export 'src/enums.dart';
 
 /// A widget that draws a dotted border around its child.
 ///
@@ -73,6 +74,7 @@ class DottedBorder extends StatelessWidget {
                 customPath: customPath,
                 strokeCap: options.strokeCap,
                 animation: animation,
+                patternType: options.patternType,
               ),
             ),
           ),
