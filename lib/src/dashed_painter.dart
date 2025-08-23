@@ -109,7 +109,7 @@ class DashedPainter extends CustomPainter {
   List<double> _getEffectiveDashPattern() => switch (patternType) {
     BorderPatternType.Dotted => [2, 2],
     BorderPatternType.Dashed => [8, 4],
-    BorderPatternType.DotDashDot => [2, 2, 8, 2, 2, 4],
+    BorderPatternType.DotDashDot => [2, 4, 8, 4],
     BorderPatternType.Custom => dashPattern,
   };
 
