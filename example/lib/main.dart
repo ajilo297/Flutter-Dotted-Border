@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
                 _CircleDottedBorder(key: Key('circle_dotted_border')),
                 _CustomPathBorder(key: Key('custom_path_dotted_border')),
                 _GradientBorder(key: Key('gradient_dotted_border')),
+                _DotDashDotBorder(key: Key('dot_dash_dot_border')),
+                _PatternTypeExamples(key: Key('pattern_type_examples')),
                 _AnimatedDottedBorder(key: Key('animated_dotted_border')),
               ]
                   .map(
@@ -185,6 +187,100 @@ class _GradientBorder extends StatelessWidget {
             ),
           ),
         ),
+      );
+}
+
+class _DotDashDotBorder extends StatelessWidget {
+  const _DotDashDotBorder({super.key});
+
+  @override
+  Widget build(BuildContext context) => const Center(
+        child: DottedBorder(
+          options: RoundedRectDottedBorderOptions(
+            patternType: BorderPatternType.DotDashDot,
+            strokeWidth: 3,
+            radius: Radius.circular(16),
+            color: Colors.teal,
+            padding: EdgeInsets.all(16),
+          ),
+          child: Text(
+            'Dot-Dash-Dot Border',
+            style: TextStyle(
+              color: Colors.teal,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+}
+
+class _PatternTypeExamples extends StatelessWidget {
+  const _PatternTypeExamples({super.key});
+
+  @override
+  Widget build(BuildContext context) => Column(
+        children: [
+          const Text(
+            'Pattern Types Comparison',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildPatternExample(
+                'Dotted',
+                BorderPatternType.Dotted,
+                Colors.blue,
+              ),
+              _buildPatternExample(
+                'Dashed',
+                BorderPatternType.Dashed,
+                Colors.green,
+              ),
+              _buildPatternExample(
+                'Dot-Dash-Dot',
+                BorderPatternType.DotDashDot,
+                Colors.orange,
+              ),
+            ],
+          ),
+        ],
+      );
+
+  Widget _buildPatternExample(
+    String label,
+    BorderPatternType patternType,
+    Color color,
+  ) =>
+      Column(
+        children: [
+          DottedBorder(
+            options: RoundedRectDottedBorderOptions(
+              patternType: patternType,
+              strokeWidth: 2,
+              radius: const Radius.circular(8),
+              color: color,
+              padding: const EdgeInsets.all(8),
+            ),
+            child: Container(
+              width: 60,
+              height: 40,
+              alignment: Alignment.center,
+              child: Text(
+                label,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
       );
 }
 

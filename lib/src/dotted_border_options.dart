@@ -118,6 +118,7 @@ final class RectDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Rect);
 }
 
@@ -132,6 +133,7 @@ final class CircularDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Circle);
 }
 
@@ -146,5 +148,6 @@ final class OvalDottedBorderOptions extends DottedBorderOptions {
     super.dashPattern,
     super.stackFit,
     super.strokeCap,
+    super.patternType,
   }) : super(borderType: BorderType.Oval);
 }
